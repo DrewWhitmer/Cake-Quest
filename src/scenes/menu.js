@@ -6,17 +6,15 @@ class Menu extends Phaser.Scene {
     preload() {
         //load images
         this.load.image('mordecai', './assets/images/Mordecai.png');
+        this.load.image('ground', './assets/images/Ground.png');
     }
 
-    create(num) {
-        //create keys
-        keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
-        keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
-        keyENTER = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
+    create() {
 
         //settings
         game.settings = {
-
+            playerSpeed: 400,
+            playerGravity: 100,
         }
 
         this.scene.start('playScene');
