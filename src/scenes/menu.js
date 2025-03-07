@@ -9,6 +9,7 @@ class Menu extends Phaser.Scene {
         this.load.image('ground', './assets/images/Ground.png');
         this.load.image('cake', './assets/images/Cake.png');
         this.load.image('log', './assets/images/Log.png');
+        this.load.image('bug', './assets/images/Bug.png')
     }
 
     create() {
@@ -19,7 +20,8 @@ class Menu extends Phaser.Scene {
             gravity: 200,
             jumpSpeed: 150,
             logSpeed: 100,
-            logRotateSpeed: 10,
+            logRotateSpeed: 400,
+            bugSpeed: 75,
         }
 
         this.scene.start('playScene');
