@@ -4,6 +4,9 @@ class Play extends Phaser.Scene {
     }
 
     create() {
+        //set background color (temp)
+        this.cameras.main.setBackgroundColor("#005599");
+
         //creating floors
         this.floor1 = this.physics.add.sprite(0, 3*game.config.height/4, 'ground').setOrigin(0,0);
         this.floor1.setImmovable(true);
@@ -18,10 +21,15 @@ class Play extends Phaser.Scene {
         this.physics.add.collider(this.floor2, this.player);
         this.physics.add.collider(this.floor3, this.player);
 
+        //creating fire
+        this.fire = this.physics.add.sprite(this.player.x, this.player.y + 32, 'fire').setOrigin(0,0)
+        this.fire.alpha = 0;
+
         //creating cake
         this.cake = this.physics.add.sprite(game.config.width*1.5, .5*game.config.height, 'cake').setOrigin(0,0);
         this.physics.add.collider(this.player, this.cake, () => {
-            this.scene.restart();
+            this.sound.play('win');
+            this.scene.start('winScene');
         }, false, this);
 
         //creating log
@@ -36,11 +44,15 @@ class Play extends Phaser.Scene {
         keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
         keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
         keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
+        keyK = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.K);
 
         // set up camera
         this.cameras.main.setBounds(0, 0, 1280, game.config.height);
         this.cameras.main.startFollow(this.player, false, 0.5, 0.5);
         this.physics.world.setBounds(0, 0, 1280, game.config.height);
+
+        //instruction text
+        document.getElementById('description').innerHTML = 'A: move left, D: move right, W: jump, K: attack';
     }
 
     update() {
@@ -54,6 +66,16 @@ class Play extends Phaser.Scene {
         }
         if (keyW.isDown && this.player.body.touching.down) {
             this.player.body.setVelocityY(-game.settings.jumpSpeed);
+            this.sound.play('jump');
+        }
+
+        //fire!!!
+        if(keyK.isDown) {
+            this.fire.x = this.player.x + 16;
+            this.fire.y = this.player.y - 16;
+            this.fire.alpha = 1;
+        } else {
+            this.fire.alpha = 0;
         }
     }
         

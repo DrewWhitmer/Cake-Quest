@@ -4,6 +4,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         scene.add.existing(this);
         scene.physics.add.existing(this);
         this.body.setGravityY(game.settings.gravity);
+        this.body.setSize(32, 64, true);
         this.body.setCollideWorldBounds(true);
         
         

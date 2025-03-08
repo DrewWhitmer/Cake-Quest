@@ -1,7 +1,7 @@
 'use strict'
 
 // name: Drew Whitmer
-// hours: 1
+// hours: 8
 
 
 
@@ -9,7 +9,7 @@ let config = {
     type: Phaser.AUTO,
     width: 640,
     height: 480,
-    scene: [ Menu, Play,  ],
+    scene: [ Menu, Play, Win],
     physics: {
         default: 'arcade',
         arcade: {
@@ -23,7 +23,7 @@ let config = {
 let game = new Phaser.Game(config);
 
 //reserve keyboard bindings
-let keyW, keyA, keyD;
+let keyW, keyA, keyD, keyJ, keyK;
 
 //UI sizes
 let borderUISize = game.config.height / 15;
