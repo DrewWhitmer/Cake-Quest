@@ -1,0 +1,24 @@
+{
+    "activeFile": "",
+    "expandedProjectPaths": [
+    ],
+    "fileStates": {
+        "CakeQuestMap.tmx#CakeQuestSet": {
+            "scaleInEditor": 1
+        },
+        "CakeQuestSet.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        }
+    },
+    "last.exportedFilePath": "C:/Users/DrewW/OneDrive/Desktop/Phaser Projects/Cake-Quest/assets/tileset",
+    "map.lastUsedExportFilter": "JSON map files (*.tmj *.json)",
+    "map.lastUsedFormat": "tmx",
+    "openFiles": [
+    ],
+    "project": "CakeQuestMap.tiled-project",
+    "property.type": "bool",
+    "recentFiles": [
+        "CakeQuestSet.tsx"
+    ]
+}

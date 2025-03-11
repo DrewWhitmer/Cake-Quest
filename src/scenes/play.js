@@ -4,22 +4,21 @@ class Play extends Phaser.Scene {
     }
 
     create() {
+        //add tilemap
+        const map = this.add.tilemap("tilemap");
+        const tileset = map.addTilesetImage("CakeQuestSet");
+        const backgroundLayer = map.createLayer("Background", tileset, 0, 0);
+        const groundLayer = map.createLayer("Ground", tileset, 0, 0);
+        groundLayer.setCollisionByProperty({
+            collides: true,
+        });
+
         //set background color (temp)
         this.cameras.main.setBackgroundColor("#005599");
 
-        //creating floors
-        this.floor1 = this.physics.add.sprite(0, 3*game.config.height/4, 'ground').setOrigin(0,0);
-        this.floor1.setImmovable(true);
-        this.floor2 = this.physics.add.sprite(game.config.width/2, 3*game.config.height/4, 'ground').setOrigin(0,0);
-        this.floor2.setImmovable(true);
-        this.floor3 = this.physics.add.sprite(game.config.width, 3*game.config.height/4, 'ground').setOrigin(0,0);
-        this.floor3.setImmovable(true);
-
         //creating player
         this.player = new Player(this, 50, game.config.height/2, 'mordecai', 0);
-        this.physics.add.collider(this.floor1, this.player);
-        this.physics.add.collider(this.floor2, this.player);
-        this.physics.add.collider(this.floor3, this.player);
+        this.physics.add.collider(groundLayer, this.player);
 
         //creating fire
         this.fire = this.physics.add.sprite(this.player.x, this.player.y + 32, 'fire').setOrigin(0,0)

@@ -6,7 +6,6 @@ class Menu extends Phaser.Scene {
     preload() {
         //load images
         this.load.image('mordecai', './assets/images/Mordecai.png');
-        this.load.image('ground', './assets/images/Ground.png');
         this.load.image('cake', './assets/images/Cake.png');
         this.load.image('log', './assets/images/Log.png');
         this.load.image('bug', './assets/images/Bug.png');
@@ -19,6 +18,9 @@ class Menu extends Phaser.Scene {
         this.load.audio('jump', './assets/sounds/Jump.wav');
         this.load.audio('start', './assets/sounds/Start.wav');
         this.load.audio('win', './assets/sounds/Win.wav');
+
+        //load tilemap
+        this.load.tilemapTiledJSON("tilemap", "CakeQuestMap.json");
     }
 
     create() {
