@@ -6,19 +6,28 @@ class Play extends Phaser.Scene {
     create() {
         //add tilemap
         const map = this.add.tilemap("tilemap");
-        const tileset = map.addTilesetImage("CakeQuestSet");
-        const backgroundLayer = map.createLayer("Background", tileset, 0, 0);
-        const groundLayer = map.createLayer("Ground", tileset, 0, 0);
+        const tileset = map.addTilesetImage("CakeQuestSet",'tilesetSheet');
+        const backgroundLayer = map.createLayer("Background", tileset);
+        const groundLayer = map.createLayer("Ground", tileset);
+
         groundLayer.setCollisionByProperty({
             collides: true,
+        })
+        groundLayer.forEachTile(tile => {
+            if (tile.index === 1) {
+            tile.collideLeft = false;
+            tile.collideRight = false;
+            tile.collideDown = false;
+            }
         });
 
         //set background color (temp)
         this.cameras.main.setBackgroundColor("#005599");
 
         //creating player
-        this.player = new Player(this, 50, game.config.height/2, 'mordecai', 0);
-        this.physics.add.collider(groundLayer, this.player);
+        const playerSpawn = map.findObject("Objects", obj => obj.name === "player")
+        this.player = new Player(this, playerSpawn.x, playerSpawn.y, 'mordecai', 0);
+        this.physics.add.collider(this.player, groundLayer);
 
         //creating fire
         this.fire = this.physics.add.sprite(this.player.x, this.player.y + 32, 'fire').setOrigin(0,0)
@@ -33,11 +42,9 @@ class Play extends Phaser.Scene {
 
         //creating log
         this.log = new Log(this, 300, game.config.height/2, 'log', 0);
-        this.physics.add.collider(this.log, this.floor1);
 
         //creating bug
         this.bug = new Bug(this, 400, game.config.height/2, 'bug', 0, false);
-        this.physics.add.collider(this.floor2, this.bug);
 
         //set keys
         keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
@@ -63,7 +70,7 @@ class Play extends Phaser.Scene {
         } else {
             this.player.body.setVelocityX(0);
         }
-        if (keyW.isDown && this.player.body.touching.down) {
+        if (keyW.isDown && this.player.body.touching.groundLayer) {
             this.player.body.setVelocityY(-game.settings.jumpSpeed);
             this.sound.play('jump');
         }

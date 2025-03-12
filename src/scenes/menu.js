@@ -12,6 +12,10 @@ class Menu extends Phaser.Scene {
         this.load.image('fire', './assets/images/Fire.png');
         this.load.image('menu', './assets/images/Menu.png');
         this.load.image('winer', './assets/images/Winer.png');
+        this.load.spritesheet('tilesetSheet', './assets/tileset/TilesetCakeQuest.png', {
+            frameWidth: 16,
+            frameHeight: 16,
+        });
 
         //load sfx (made using jfxr)
         this.load.audio('bugDeath', './assets/sounds/BugDeath.wav');
@@ -20,7 +24,7 @@ class Menu extends Phaser.Scene {
         this.load.audio('win', './assets/sounds/Win.wav');
 
         //load tilemap
-        this.load.tilemapTiledJSON("tilemap", "CakeQuestMap.json");
+        this.load.tilemapTiledJSON("tilemap", "./assets/tileset/CakeQuestMap.json");
     }
 
     create() {
