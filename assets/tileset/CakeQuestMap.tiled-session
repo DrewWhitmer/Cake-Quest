@@ -1,10 +1,19 @@
 {
-    "activeFile": "",
+    "activeFile": "CakeQuestMap.tmx",
     "expandedProjectPaths": [
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
+        "CakeQuestMap.tmx": {
+            "scale": 0.75,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 738,
+                "y": -2.6666666666666856
+            }
+        },
         "CakeQuestMap.tmx#CakeQuestSet": {
+            "scaleInDock": 1,
             "scaleInEditor": 1
         },
         "CakeQuestSet.tsx": {
@@ -17,10 +26,12 @@
     "map.lastUsedExportFilter": "JSON map files (*.tmj *.json)",
     "map.lastUsedFormat": "tmx",
     "openFiles": [
+        "CakeQuestMap.tmx"
     ],
     "project": "CakeQuestMap.tiled-project",
     "property.type": "bool",
     "recentFiles": [
+        "CakeQuestMap.tmx",
         "CakeQuestSet.tsx"
     ]
 }

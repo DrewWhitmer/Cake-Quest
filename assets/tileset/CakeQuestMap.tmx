@@ -3,11 +3,11 @@
  <editorsettings>
   <export target="CakeQuestMap.json" format="json"/>
  </editorsettings>
- <tileset firstgid="1" name="CakeQuestSet" tilewidth="16" tileheight="16" tilecount="10" columns="9">
+ <tileset firstgid="1" name="CakeQuestSet" tilewidth="16" tileheight="16" tilecount="10" columns="10">
   <properties>
    <property name="collides" value=""/>
   </properties>
-  <image source="TilesetCakeQuest.png" trans="00c0de" width="144" height="16"/>
+  <image source="TilesetCakeQuest.png" trans="00c0de" width="160" height="16"/>
   <tile id="0">
    <properties>
     <property name="collides" type="bool" value="true"/>
@@ -129,9 +129,9 @@
 0,0,0,0,0,1,2,3,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,1,2,2,3,0,0,
+0,0,0,0,0,0,1,2,3,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+3,0,0,0,0,0,0,0,0,0,1,2,2,2,3,0,
 6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,1,2,3,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -147,13 +147,13 @@
   <object id="2" name="log1" type="Log" x="192.333" y="153">
    <point/>
   </object>
-  <object id="3" name="bug1" type="Bug" x="378.667" y="169.333">
+  <object id="3" name="bug1" type="Bug" x="378.667" y="143.333">
    <point/>
   </object>
   <object id="4" name="log2" type="Log" x="738.667" y="-20.6667">
    <point/>
   </object>
-  <object id="6" name="bug2" type="Bug" x="638.667" y="-100">
+  <object id="6" name="bug2" type="Bug" x="722.667" y="-142">
    <point/>
   </object>
   <object id="7" name="cake" x="790" y="-142.667">

@@ -13,19 +13,18 @@ class Play extends Phaser.Scene {
         groundLayer.setCollisionByProperty({
             collides: true,
         })
-        groundLayer.forEachTile(tile => {
-            if (tile.index === 1) {
+        groundLayer.forEachTile((tile) => {
             tile.collideLeft = false;
             tile.collideRight = false;
             tile.collideDown = false;
             }
-        });
+        );
 
         //set background color (temp)
         this.cameras.main.setBackgroundColor("#005599");
 
         //creating player
-        const playerSpawn = map.findObject("Objects", obj => obj.name === "player")
+        const playerSpawn = map.findObject("Objects", obj => obj.name === "player");
         this.player = new Player(this, playerSpawn.x, playerSpawn.y, 'mordecai', 0);
         this.physics.add.collider(this.player, groundLayer);
 
@@ -34,17 +33,29 @@ class Play extends Phaser.Scene {
         this.fire.alpha = 0;
 
         //creating cake
-        this.cake = this.physics.add.sprite(game.config.width*1.5, .5*game.config.height, 'cake').setOrigin(0,0);
+        const cakeSpawn = map.findObject("Objects", obj => obj.name === "cake");
+        this.cake = this.physics.add.sprite(cakeSpawn.x, cakeSpawn.y, 'cake').setOrigin(0,0);
         this.physics.add.collider(this.player, this.cake, () => {
             this.sound.play('win');
             this.scene.start('winScene');
         }, false, this);
 
         //creating log
-        this.log = new Log(this, 300, game.config.height/2, 'log', 0);
+        const logSpawn1 = map.findObject("Objects", obj => obj.name === "log1");
+        const logSpawn2 = map.findObject("Objects", obj => obj.name === "log2");
+        this.log1 = new Log(this, logSpawn1.x, logSpawn1.y, 'log', 0);
+        this.log2 = new Log(this, logSpawn2.x, logSpawn2.y, 'log', 0);
+        this.logs = this.add.group([this.log1,this.log2]);
+        this.physics.add.collider(this.logs, groundLayer);
+
 
         //creating bug
-        this.bug = new Bug(this, 400, game.config.height/2, 'bug', 0, false);
+        const bugSpawn1 = map.findObject("Objects", obj => obj.name === "bug1");
+        const bugSpawn2 = map.findObject("Objects", obj => obj.name === "bug2");
+        this.bug1 = new Bug(this, bugSpawn1.x, bugSpawn1.y, 'bug', 0);
+        this.bug2 = new Bug(this, bugSpawn2.x, bugSpawn2.y, 'bug', 0);
+        this.bugs = this.add.group([this.bug1,this.bug2]);
+        this.physics.add.collider(this.bugs, groundLayer);
 
         //set keys
         keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
@@ -53,9 +64,9 @@ class Play extends Phaser.Scene {
         keyK = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.K);
 
         // set up camera
-        this.cameras.main.setBounds(0, 0, 1280, game.config.height);
+        this.cameras.main.setBounds(0, -250, 1280, game.config.height);
         this.cameras.main.startFollow(this.player, false, 0.5, 0.5);
-        this.physics.world.setBounds(0, 0, 1280, game.config.height);
+        this.physics.world.setBounds(0, -250, 1280, game.config.height);
 
         //instruction text
         document.getElementById('description').innerHTML = 'A: move left, D: move right, W: jump, K: attack';
@@ -70,7 +81,7 @@ class Play extends Phaser.Scene {
         } else {
             this.player.body.setVelocityX(0);
         }
-        if (keyW.isDown && this.player.body.touching.groundLayer) {
+        if (keyW.isDown && this.player.body.velocity.y == 0) {
             this.player.body.setVelocityY(-game.settings.jumpSpeed);
             this.sound.play('jump');
         }
