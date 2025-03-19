@@ -1,7 +1,8 @@
 'use strict'
 
 // name: Drew Whitmer
-// hours: 9
+// hours: 20
+// phaser components: tilemaps, physics, cameras, animation, text, FX
 
 
 
@@ -9,11 +10,11 @@ let config = {
     type: Phaser.AUTO,
     width: 640,
     height: 480,
-    scene: [ Menu, Play, Win],
+    scene: [Menu, Play, Win, CharacterSelect, Controls],
     physics: {
         default: 'arcade',
         arcade: {
-            debug: false,
+            debug: true,
         }
     },
     backgroundColor: '#FFFFFF',
@@ -23,7 +24,7 @@ let config = {
 let game = new Phaser.Game(config);
 
 //reserve keyboard bindings
-let keyW, keyA, keyD, keyJ, keyK;
+let keyW, keyA, keyS, keyD, keyJ, keyK;
 
 //UI sizes
 let borderUISize = game.config.height / 15;

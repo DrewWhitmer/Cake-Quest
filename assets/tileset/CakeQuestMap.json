@@ -238,6 +238,50 @@
                  "width":0,
                  "x":790,
                  "y":-142.667
+                }, 
+                {
+                 "height":0,
+                 "id":8,
+                 "name":"bugEdge1",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":313.333333333333,
+                 "y":160
+                }, 
+                {
+                 "height":0,
+                 "id":9,
+                 "name":"bugEdge2",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":437.333333333333,
+                 "y":161.333333333333
+                }, 
+                {
+                 "height":0,
+                 "id":10,
+                 "name":"bugEdge3",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":500,
+                 "y":-114.666666666667
+                }, 
+                {
+                 "height":0,
+                 "id":11,
+                 "name":"bugEdge4",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":758.666666666667,
+                 "y":-108
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -246,7 +290,7 @@
          "y":0
         }],
  "nextlayerid":4,
- "nextobjectid":8,
+ "nextobjectid":12,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",

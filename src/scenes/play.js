@@ -3,7 +3,7 @@ class Play extends Phaser.Scene {
         super("playScene");
     }
 
-    create() {
+    create(type) {
         //add tilemap
         const map = this.add.tilemap("tilemap");
         const tileset = map.addTilesetImage("CakeQuestSet",'tilesetSheet');
@@ -25,8 +25,17 @@ class Play extends Phaser.Scene {
 
         //creating player
         const playerSpawn = map.findObject("Objects", obj => obj.name === "player");
-        this.player = new Player(this, playerSpawn.x, playerSpawn.y, 'mordecai', 0);
+        this.player = new Player(this, playerSpawn.x, playerSpawn.y, 'mordecai', 0, type);
         this.physics.add.collider(this.player, groundLayer);
+
+        //resets the game if the player falls
+        this.physics.world.on('worldbounds', (body, up, down, left, right) => {
+            if(up == true) {
+                this.music.stop();
+                this.scene.restart();
+            }
+
+        })
 
         //creating fire
         this.fire = this.physics.add.sprite(this.player.x, this.player.y + 32, 'fire').setOrigin(0,0)
@@ -36,6 +45,7 @@ class Play extends Phaser.Scene {
         const cakeSpawn = map.findObject("Objects", obj => obj.name === "cake");
         this.cake = this.physics.add.sprite(cakeSpawn.x, cakeSpawn.y, 'cake').setOrigin(0,0);
         this.physics.add.collider(this.player, this.cake, () => {
+            this.music.stop();
             this.sound.play('win');
             this.scene.start('winScene');
         }, false, this);
@@ -58,41 +68,27 @@ class Play extends Phaser.Scene {
         this.physics.add.collider(this.bugs, groundLayer);
 
         //set keys
+        keyJ = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.J);
         keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
         keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
         keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
-        keyK = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.K);
 
         // set up camera
-        this.cameras.main.setBounds(0, -250, 1280, game.config.height);
+        this.cameras.main.setBounds(0, -250, 1000, game.config.height);
         this.cameras.main.startFollow(this.player, false, 0.5, 0.5);
-        this.physics.world.setBounds(0, -250, 1280, game.config.height);
+        this.physics.world.setBounds(0, -250, 1000, game.config.height);
 
-        //instruction text
-        document.getElementById('description').innerHTML = 'A: move left, D: move right, W: jump, K: attack';
+        //set up music
+        this.music = this.sound.add('playMusic');
+        this.music.loop = true;
+        this.music.play();
     }
 
     update() {
-        //movement
-        if (keyA.isDown) {
-            this.player.body.setVelocityX(-game.settings.playerSpeed);
-        } else if (keyD.isDown) {
-            this.player.body.setVelocityX(game.settings.playerSpeed);
-        } else {
-            this.player.body.setVelocityX(0);
-        }
-        if (keyW.isDown && this.player.body.velocity.y == 0) {
-            this.player.body.setVelocityY(-game.settings.jumpSpeed);
-            this.sound.play('jump');
-        }
-
-        //fire!!!
-        if(keyK.isDown) {
-            this.fire.x = this.player.x + 16;
-            this.fire.y = this.player.y - 16;
-            this.fire.alpha = 1;
-        } else {
-            this.fire.alpha = 0;
+        this.player.update();
+        if(this.player.getBottomRight().y >= 230) {
+            this.music.stop();
+            this.scene.restart();
         }
     }
         

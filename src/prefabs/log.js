@@ -7,10 +7,11 @@ class Log extends Phaser.Physics.Arcade.Sprite {
         this.body.setSize(16,16);
         this.body.setGravityY(game.settings.gravity);
         this.body.setVelocityX(-game.settings.logSpeed);
-        this.body.setAngularVelocity(game.settings.logRotateSpeed);
+        this.body.setAngularVelocity(-game.settings.logRotateSpeed);
 
         //collider with player
         this.scene.physics.add.collider(this.scene.player, this, () => {
+            this.scene.music.stop();
             this.scene.scene.restart();
         }, false, this);
     }

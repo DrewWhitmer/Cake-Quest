@@ -9,6 +9,7 @@ class Bug extends Phaser.Physics.Arcade.Sprite {
         
         //collider with player
         this.scene.physics.add.collider(this.scene.player, this, () => {
+            this.scene.music.stop();
             this.scene.scene.restart();
         }, false, this);
 
@@ -18,5 +19,5 @@ class Bug extends Phaser.Physics.Arcade.Sprite {
                 this.scene.sound.play('bugDeath');
                 this.destroy();
             }}, false, this);
-        }
+    }
 }

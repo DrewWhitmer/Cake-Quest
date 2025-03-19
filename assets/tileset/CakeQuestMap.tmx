@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="16" tileheight="16" infinite="1" nextlayerid="4" nextobjectid="8">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="16" tileheight="16" infinite="1" nextlayerid="4" nextobjectid="12">
  <editorsettings>
   <export target="CakeQuestMap.json" format="json"/>
  </editorsettings>
@@ -159,5 +159,9 @@
   <object id="7" name="cake" x="790" y="-142.667">
    <point/>
   </object>
+  <object id="8" name="bugEdge1" x="313.333" y="160"/>
+  <object id="9" name="bugEdge2" x="437.333" y="161.333"/>
+  <object id="10" name="bugEdge3" x="500" y="-114.667"/>
+  <object id="11" name="bugEdge4" x="758.667" y="-108"/>
  </objectgroup>
 </map>
